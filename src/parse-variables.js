@@ -15,7 +15,7 @@ function constructSassString(variables) {
 export default function parseVariables(variables, opts = {}) {
   const result = sass.renderSync({
     data: constructSassString(variables),
-    outputStyle: 'nested',
+    outputStyle: 'compact',
   }).css.toString();
 
   const parsedVariables = result.split(/\n/)
