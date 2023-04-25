@@ -1,13 +1,13 @@
-import sass from "sass";
-import camelCase from "lodash.camelcase";
+import sass from 'sass';
+import camelCase from 'lodash.camelcase';
 
 function constructSassString(variables) {
   const asVariables = variables
     .map((variable) => `$${variable.name}: ${variable.value};`)
-    .join("\n");
+    .join('\n');
   const asClasses = variables
     .map((variable) => `.${variable.name} { value: ${variable.value} }`)
-    .join("\n");
+    .join('\n');
 
   return `${asVariables}\n${asClasses}`;
 }
@@ -15,16 +15,16 @@ function constructSassString(variables) {
 export default function parseVariables(variables, opts = {}) {
   const result = sass
     .renderSync({
-      file: "variables.scss", // specify input file name
+      file: 'variables.scss', // specify input file name
       data: constructSassString(variables),
-      outputStyle: "compressed",
+      outputStyle: 'compressed',
     })
     .css.toString();
 
-  console.log(result.replace(/}./g, "}\n.").split(/\n/));
+  console.log(result.replace(/}./g, '}\n.').split(/\n/));
 
   const parsedVariables = result
-    .replace(/}./g, "}\n.")
+    .replace(/}./g, '}\n.')
     .split(/\n/)
     .filter((line) => line && line.length)
     .map((variable) => {
