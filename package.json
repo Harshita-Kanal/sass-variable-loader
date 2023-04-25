@@ -1,5 +1,5 @@
 {
-  "name": "dart-sass-variable-loader",
+  "name": "sass-variable-loader-dart",
   "version": "0.0.1",
   "description": "Sass variable loader module for webpack",
   "main": "dist/index.js",
